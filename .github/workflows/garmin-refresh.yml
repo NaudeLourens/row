@@ -1,0 +1,107 @@
+name: Refresh Garmin Data
+
+on:
+  schedule:
+    - cron: '0 6 * * *'   # 06:00 UTC daily
+  workflow_dispatch:        # allow manual run from the Actions tab
+
+permissions:
+  contents: write           # needed to push garmin_data.json back to main
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install garminconnect
+        run: pip install garminconnect
+
+      # ── Headless auth — pick ONE option, read trade-offs below ────────────
+      #
+      # PROBLEM: garmin_fetch.py calls api.login() with return_on_mfa=True,
+      # which prompts interactively for an MFA code.  CI runners start with no
+      # cached token, so the first login can never complete without intervention.
+      #
+      # OPTION A — seed the cached token (recommended; keeps MFA on)
+      #   garminconnect stores a single JSON file: ~/.garminconnect/garmin_tokens.json
+      #   It contains {"di_token": "...", "di_refresh_token": "...", "di_client_id": "..."}.
+      #   The "Restore Garmin token cache" step below writes this file before
+      #   the fetch runs, so login succeeds without any MFA prompt.
+      #
+      #   One-time setup:
+      #     1. Run `python garmin_fetch.py` locally once (it will prompt for MFA).
+      #     2. cat ~/.garminconnect/garmin_tokens.json   # copy this JSON
+      #     3. Add it as a GitHub secret named GARMIN_TOKENS (single-line JSON).
+      #
+      #   Token longevity: di_refresh_token is long-lived (weeks to months).
+      #   If Garmin uses *rotating* refresh tokens, each successful run issues a
+      #   new refresh token and the one in your secret goes stale.  To avoid
+      #   breakage, uncomment the "Save refreshed token" step below — it writes
+      #   the updated token back to the secret after every run (needs GH_PAT).
+      #
+      # OPTION B — disable MFA on your Garmin account
+      #   Garmin Connect → Account Settings → Two-Step Verification → turn off.
+      #   email+password then works headlessly; delete the token steps entirely.
+      #   Trade-off: your health data account loses MFA protection.  For a
+      #   personal dashboard this is often acceptable; judge for yourself.
+      #
+      # OPTION C — dedicated Garmin account with MFA off
+      #   Create a second Garmin account whose only purpose is CI data pulls.
+      #   MFA off on that account; your primary account keeps MFA enabled.
+      #   Garmin doesn't natively support multi-user data sharing, so this
+      #   would require logging in as the secondary account and accessing data
+      #   via whatever sharing mechanism Garmin exposes — not straightforward.
+      #   Worth considering if you're security-conscious and comfortable with
+      #   the extra Garmin account overhead.
+      #
+      # ─────────────────────────────────────────────────────────────────────
+
+      - name: Restore Garmin token cache
+        env:
+          GARMIN_TOKENS: ${{ secrets.GARMIN_TOKENS }}
+        run: |
+          if [ -n "$GARMIN_TOKENS" ]; then
+            mkdir -p "$HOME/.garminconnect"
+            printf '%s' "$GARMIN_TOKENS" > "$HOME/.garminconnect/garmin_tokens.json"
+            echo "Token cache restored from GARMIN_TOKENS secret."
+          else
+            echo "::warning::GARMIN_TOKENS secret not set — falling back to email+password only (will fail if MFA is enabled)."
+          fi
+
+      - name: Fetch Garmin data
+        env:
+          GARMIN_EMAIL: ${{ secrets.GARMIN_EMAIL }}
+          GARMIN_PASSWORD: ${{ secrets.GARMIN_PASSWORD }}
+        run: python garmin_fetch.py
+
+      # Optional: write the refreshed token back to the GARMIN_TOKENS secret
+      # after each successful run.  This handles rotating refresh tokens so the
+      # secret never goes stale.  Requires a Fine-grained PAT (or classic PAT)
+      # with "Secrets: read and write" permission on this repo, stored as GH_PAT.
+      # Uncomment the block below to enable.
+      #
+      # - name: Save refreshed token back to secret
+      #   env:
+      #     GH_TOKEN: ${{ secrets.GH_PAT }}
+      #   run: |
+      #     TOKEN_FILE="$HOME/.garminconnect/garmin_tokens.json"
+      #     if [ -z "$GH_TOKEN" ] || [ ! -f "$TOKEN_FILE" ]; then
+      #       echo "Skipping token save (GH_PAT not set or token file missing)."
+      #       exit 0
+      #     fi
+      #     gh secret set GARMIN_TOKENS \
+      #       --body "$(cat "$TOKEN_FILE")" \
+      #       --repo "$GITHUB_REPOSITORY"
+      #     echo "GARMIN_TOKENS secret updated with refreshed token."
+
+      - name: Commit updated garmin_data.json
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'chore: refresh garmin data'
+          file_pattern: garmin_data.json
