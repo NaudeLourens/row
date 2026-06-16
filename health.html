@@ -86,6 +86,66 @@ main {
 }
 .section-title::before { content: '≡'; font-size: 14px; opacity: 0.5; }
 
+/* ===== Garmin card ===== */
+.g-brand{display:inline-flex;align-items:center;gap:8px;}
+.g-brand-mark{width:22px;height:22px;border-radius:50%;background:linear-gradient(180deg,#1A9FE0,#0E6FA8);color:#fff;font-weight:900;font-size:12px;display:inline-flex;align-items:center;justify-content:center;letter-spacing:-0.04em;box-shadow:0 0 12px rgba(26,159,224,0.40);}
+.g-brand-text{font-weight:800;font-size:13px;letter-spacing:0.18em;color:var(--text-primary);}
+.g-live-tag{display:inline-flex;align-items:center;gap:5px;font-size:9.5px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--success);margin-left:4px;}
+.g-live-dot{width:6px;height:6px;border-radius:50%;background:var(--success);box-shadow:0 0 8px rgba(107,227,164,.65);animation:g-pulse 1.6s ease-in-out infinite;}
+@keyframes g-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
+.g-disc{display:flex;flex-direction:column;align-items:center;text-align:center;padding:18px 8px 8px;gap:6px;}
+.g-disc .g-brand{margin-bottom:14px;}
+.g-disc-title{font-size:22px;font-weight:700;letter-spacing:-0.02em;color:var(--text-primary);}
+.g-disc-sub{font-size:13px;color:var(--text-tertiary);max-width:340px;line-height:1.5;margin-bottom:16px;}
+.g-disc-sub code{background:rgba(255,255,255,.05);padding:1px 6px;border-radius:4px;font-family:var(--font-mono);font-size:11.5px;color:#4FC3F7;}
+.g-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--text-primary);font:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:background .18s,transform .12s;}
+.g-btn:hover{background:rgba(255,255,255,.1);transform:translateY(-1px);}
+.g-header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;}
+.g-header-right{display:flex;align-items:center;gap:10px;}
+.g-updated{font-size:11px;color:var(--text-tertiary);font-family:var(--font-mono);}
+.g-refresh{width:32px;height:32px;border-radius:50%;border:1px solid transparent;background:rgba(255,255,255,.04);color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .18s,color .18s,transform .12s;}
+.g-refresh:hover{background:rgba(255,255,255,.1);color:var(--text-primary);}
+.g-refresh:active{transform:rotate(180deg);}
+.g-ring-wrap{position:relative;width:240px;max-width:78%;margin:0 auto 24px;aspect-ratio:1;}
+.g-ring{width:100%;height:100%;transform:rotate(-90deg);filter:drop-shadow(0 0 24px rgba(255,255,255,.05));}
+.g-ring-track{fill:none;stroke:rgba(255,255,255,.06);stroke-width:12;}
+.g-ring-fill{fill:none;stroke:#1A9FE0;stroke-width:12;stroke-linecap:round;stroke-dasharray:603;stroke-dashoffset:603;transition:stroke-dashoffset 1s cubic-bezier(.4,0,.2,1),stroke .6s;filter:drop-shadow(0 0 6px rgba(26,159,224,0.40));}
+.g-ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.g-ring-num{font-size:58px;font-weight:800;line-height:1;letter-spacing:-0.03em;font-variant-numeric:tabular-nums;color:var(--text-primary);}
+.g-ring-unit{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-tertiary);margin-top:6px;}
+.g-ring-label{font-size:12px;font-weight:600;color:var(--text-secondary);margin-top:4px;letter-spacing:.02em;}
+.g-stages{margin:0 0 18px;}
+.g-stages-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;}
+.g-eyebrow{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-tertiary);font-weight:600;}
+.g-stages-meta{font-size:11px;color:var(--text-secondary);font-family:var(--font-mono);}
+.g-stages-bar{display:flex;height:12px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.04);}
+.g-stage{height:100%;transition:width 1s cubic-bezier(.4,0,.2,1);}
+.g-stage-rem{background:#7C6BE3;}.g-stage-deep{background:#3B6BE3;}
+.g-stage-light{background:#5FA8E0;}.g-stage-awake{background:rgba(255,255,255,.18);}
+.g-stages-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;}
+.g-leg{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;color:var(--text-tertiary);font-weight:600;}
+.g-leg .dot{width:8px;height:8px;border-radius:50%;}
+.d-rem{background:#7C6BE3;}.d-deep{background:#3B6BE3;}.d-light{background:#5FA8E0;}.d-awake{background:rgba(255,255,255,.3);}
+.g-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
+.g-stat{position:relative;background:rgba(255,255,255,.03);border-radius:14px;padding:14px 10px 12px;text-align:center;}
+.g-stat-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary);font-weight:600;}
+.g-stat-value{font-size:22px;font-weight:800;margin-top:4px;font-variant-numeric:tabular-nums;letter-spacing:-0.02em;color:var(--text-primary);}
+.g-stat-sub{font-size:10px;color:var(--text-tertiary);margin-top:2px;}
+.g-zone{position:absolute;top:9px;right:9px;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.12);transition:background .3s,box-shadow .3s;}
+.z-good{background:var(--success);box-shadow:0 0 7px rgba(107,227,164,.55);}
+.z-norm{background:rgba(255,255,255,.30);}
+.z-warn{background:var(--warning);box-shadow:0 0 7px rgba(242,192,99,.55);}
+.z-bad{background:var(--danger);box-shadow:0 0 7px rgba(255,107,107,.55);}
+@media(max-width:560px){.g-stats{grid-template-columns:repeat(2,1fr);}}
+.g-bio{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.g-bio-item{position:relative;background:rgba(255,255,255,.03);border-radius:12px;padding:11px 10px;display:flex;flex-direction:column;gap:2px;}
+.g-bio-label{font-size:10px;color:var(--text-tertiary);letter-spacing:.04em;}
+.g-bio-val{font-size:14px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--text-primary);}
+@media(max-width:380px){.g-bio{grid-template-columns:1fr;}}
+.g-legend{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-top:14px;padding:10px 12px;background:rgba(255,255,255,.02);border-radius:999px;}
+.g-legend .g-zone{position:static;display:inline-block;}
+.g-legend-item{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:600;color:var(--text-tertiary);}
+
 .water-embed { margin-top: 56px; }
 .water-iframe {
   display: block;
@@ -473,6 +533,20 @@ main {
 <body>
 
 <main>
+  <section id="garmin-section">
+    <div class="section-title">Garmin</div>
+    <div class="gm-card" id="garmin-card">
+      <div class="g-disc" id="g-empty">
+        <div class="g-brand">
+          <span class="g-brand-mark">G</span>
+          <span class="g-brand-text">GARMIN</span>
+        </div>
+        <div class="g-disc-title">No data yet</div>
+        <div class="g-disc-sub">Run <code>python3 garmin_fetch.py</code> to pull your metrics from Garmin Connect.</div>
+      </div>
+    </div>
+  </section>
+
   <div class="section-title">Daily Stack</div>
 
   <div class="stack-card">
@@ -1048,6 +1122,160 @@ document.addEventListener('DOMContentLoaded', function () {
     onApplied: function () { window.dispatchEvent(new Event('storage')); }
   });
 });
+</script>
+
+<script>
+(function () {
+  var DATA_URL = '/garmin_data.json?v=';
+  var card = document.getElementById('garmin-card');
+
+  function fmtH(sec) {
+    if (sec == null) return '—';
+    var h = Math.floor(sec / 3600);
+    var m = Math.floor((sec % 3600) / 60);
+    return h + 'h ' + m + 'm';
+  }
+
+  function zone(el, v, good, warn) {
+    el.classList.remove('z-good', 'z-norm', 'z-warn', 'z-bad');
+    if (v == null) return;
+    el.classList.add(v >= good ? 'z-good' : v >= warn ? 'z-norm' : v >= warn * 0.75 ? 'z-warn' : 'z-bad');
+  }
+
+  function render(d) {
+    var readiness = (d.readiness && d.readiness.score != null) ? d.readiness.score : null;
+    var level     = (d.readiness && d.readiness.level)         ? d.readiness.level  : '';
+    var sleepSc   = (d.sleep && d.sleep.score != null)         ? d.sleep.score      : null;
+    var sleepSec  = (d.sleep && d.sleep.totalSec != null)      ? d.sleep.totalSec   : null;
+    var st        = (d.sleep && d.sleep.stages) || {};
+    var bb        = (d.bodyBattery && d.bodyBattery.current != null) ? d.bodyBattery.current : null;
+    var hrv       = (d.hrv && d.hrv.lastNightAvg != null)      ? d.hrv.lastNightAvg : null;
+    var rhr       = (d.rhr != null)                            ? d.rhr              : null;
+    var stress    = (d.stress && d.stress.avg != null)         ? d.stress.avg       : null;
+    var spo2      = (d.spo2 && d.spo2.avg != null)             ? d.spo2.avg         : null;
+    var resp      = (d.respiration && d.respiration.avg != null) ? d.respiration.avg : null;
+    var updated   = d.updated || null;
+
+    var CIRC = 603;
+    var pct  = readiness != null ? Math.max(0, Math.min(100, readiness)) / 100 : 0;
+    var offset = CIRC - pct * CIRC;
+
+    var levelLabel = level ? level.charAt(0).toUpperCase() + level.slice(1).toLowerCase().replace(/_/g, ' ') : (readiness != null ? 'Readiness' : '—');
+
+    var sleepTotal = (st.deep || 0) + (st.light || 0) + (st.rem || 0) + (st.awake || 0);
+
+    function stagePct(v) { return sleepTotal > 0 && v ? ((v / sleepTotal) * 100).toFixed(1) + '%' : '0%'; }
+
+    var updStr = updated ? (function () {
+      var d2 = new Date(updated);
+      return d2.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    })() : '';
+
+    card.innerHTML =
+      '<div class="g-header">' +
+        '<div class="g-brand">' +
+          '<span class="g-brand-mark">G</span>' +
+          '<span class="g-brand-text">GARMIN</span>' +
+          '<span class="g-live-tag"><span class="g-live-dot"></span>LIVE</span>' +
+        '</div>' +
+        '<div class="g-header-right">' +
+          (updStr ? '<span class="g-updated">' + updStr + '</span>' : '') +
+          '<button class="g-refresh" id="g-refresh-btn" title="Refresh" aria-label="Refresh Garmin data">↻</button>' +
+        '</div>' +
+      '</div>' +
+
+      '<div class="g-ring-wrap">' +
+        '<svg class="g-ring" viewBox="0 0 240 240">' +
+          '<circle class="g-ring-track" cx="120" cy="120" r="96"/>' +
+          '<circle class="g-ring-fill" id="g-ring-fill" cx="120" cy="120" r="96" stroke-dashoffset="' + CIRC + '"/>' +
+        '</svg>' +
+        '<div class="g-ring-center">' +
+          '<span class="g-ring-num" id="g-ring-num">' + (readiness != null ? readiness : '—') + '</span>' +
+          '<span class="g-ring-unit">/ 100</span>' +
+          '<span class="g-ring-label" id="g-ring-label">' + levelLabel + '</span>' +
+        '</div>' +
+      '</div>' +
+
+      '<div class="g-stages">' +
+        '<div class="g-stages-head">' +
+          '<span class="g-eyebrow">Sleep</span>' +
+          '<span class="g-stages-meta">' +
+            (sleepSc != null ? sleepSc + ' pts · ' : '') +
+            fmtH(sleepSec) +
+          '</span>' +
+        '</div>' +
+        '<div class="g-stages-bar">' +
+          '<div class="g-stage g-stage-rem"   style="width:' + stagePct(st.rem)   + '"></div>' +
+          '<div class="g-stage g-stage-deep"  style="width:' + stagePct(st.deep)  + '"></div>' +
+          '<div class="g-stage g-stage-light" style="width:' + stagePct(st.light) + '"></div>' +
+          '<div class="g-stage g-stage-awake" style="width:' + stagePct(st.awake) + '"></div>' +
+        '</div>' +
+        '<div class="g-stages-legend">' +
+          '<span class="g-leg"><span class="dot d-rem"></span>REM ' + fmtH(st.rem) + '</span>' +
+          '<span class="g-leg"><span class="dot d-deep"></span>Deep ' + fmtH(st.deep) + '</span>' +
+          '<span class="g-leg"><span class="dot d-light"></span>Light ' + fmtH(st.light) + '</span>' +
+          '<span class="g-leg"><span class="dot d-awake"></span>Awake ' + fmtH(st.awake) + '</span>' +
+        '</div>' +
+      '</div>' +
+
+      '<div class="g-stats">' +
+        '<div class="g-stat"><span class="g-zone" id="gz-bb"></span><div class="g-stat-label">Body Battery</div><div class="g-stat-value">' + (bb != null ? bb : '—') + '</div><div class="g-stat-sub">/ 100</div></div>' +
+        '<div class="g-stat"><span class="g-zone" id="gz-hrv"></span><div class="g-stat-label">HRV</div><div class="g-stat-value">' + (hrv != null ? Math.round(hrv) : '—') + '</div><div class="g-stat-sub">ms</div></div>' +
+        '<div class="g-stat"><span class="g-zone" id="gz-rhr"></span><div class="g-stat-label">RHR</div><div class="g-stat-value">' + (rhr != null ? rhr : '—') + '</div><div class="g-stat-sub">bpm</div></div>' +
+        '<div class="g-stat"><span class="g-zone" id="gz-stress"></span><div class="g-stat-label">Stress</div><div class="g-stat-value">' + (stress != null ? stress : '—') + '</div><div class="g-stat-sub">/ 100</div></div>' +
+      '</div>' +
+
+      '<div class="g-bio">' +
+        '<div class="g-bio-item"><span class="g-zone" id="gz-spo2"></span><div class="g-bio-label">SpO₂</div><div class="g-bio-val">' + (spo2 != null ? spo2.toFixed(1) + '%' : '—') + '</div></div>' +
+        '<div class="g-bio-item"><span class="g-zone" id="gz-resp"></span><div class="g-bio-label">Respiration</div><div class="g-bio-val">' + (resp != null ? resp.toFixed(1) + ' brpm' : '—') + '</div></div>' +
+        '<div class="g-bio-item"><div class="g-bio-label">Steps</div><div class="g-bio-val">' + (d.steps != null ? d.steps.toLocaleString() : '—') + '</div></div>' +
+      '</div>' +
+
+      '<div class="g-legend">' +
+        '<span class="g-legend-item"><span class="g-zone z-good"></span>Good</span>' +
+        '<span class="g-legend-item"><span class="g-zone z-norm"></span>Normal</span>' +
+        '<span class="g-legend-item"><span class="g-zone z-warn"></span>Warn</span>' +
+        '<span class="g-legend-item"><span class="g-zone z-bad"></span>Low</span>' +
+      '</div>';
+
+    requestAnimationFrame(function () {
+      var fill = document.getElementById('g-ring-fill');
+      if (fill) fill.style.strokeDashoffset = offset;
+      zone(document.getElementById('gz-bb'),     bb,     70, 40);
+      zone(document.getElementById('gz-hrv'),    hrv,    50, 30);
+      zone(document.getElementById('gz-rhr'),    rhr != null ? 100 - rhr : null, 40, 20);
+      zone(document.getElementById('gz-stress'), stress != null ? 100 - stress : null, 50, 25);
+      zone(document.getElementById('gz-spo2'),   spo2,   97, 95);
+      zone(document.getElementById('gz-resp'),   resp,   12, 15);
+      var btn = document.getElementById('g-refresh-btn');
+      if (btn) btn.addEventListener('click', load);
+    });
+  }
+
+  function showEmpty(msg) {
+    card.innerHTML =
+      '<div class="g-disc" id="g-empty">' +
+        '<div class="g-brand"><span class="g-brand-mark">G</span><span class="g-brand-text">GARMIN</span></div>' +
+        '<div class="g-disc-title">No data yet</div>' +
+        '<div class="g-disc-sub">' + (msg || 'Run <code>python3 garmin_fetch.py</code> to pull your metrics from Garmin Connect.') + '</div>' +
+      '</div>';
+  }
+
+  function load() {
+    fetch(DATA_URL + Date.now(), { cache: 'no-store' })
+      .then(function (r) {
+        if (!r.ok) throw new Error(r.status);
+        return r.json();
+      })
+      .then(function (d) {
+        if (!d || typeof d !== 'object') { showEmpty(); return; }
+        render(d);
+      })
+      .catch(function () { showEmpty(); });
+  }
+
+  document.addEventListener('DOMContentLoaded', load);
+})();
 </script>
 
 </body>
