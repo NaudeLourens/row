@@ -84,7 +84,7 @@ html, body {
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
 }
-.shell { max-width: 720px; margin: 0 auto; padding: 24px 16px 80px; }
+.shell { max-width: 720px; margin: 0 auto; padding: 24px max(16px, env(safe-area-inset-right)) 80px max(16px, env(safe-area-inset-left)); }
 
 /* ----- Top day pill + header ----- */
 .day-pill {
