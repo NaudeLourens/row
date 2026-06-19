@@ -1,26 +1,26 @@
 {
-  "updated": "2026-06-18T17:49:29",
+  "updated": "2026-06-19T16:19:41",
   "readiness": {
     "score": null,
     "level": null
   },
   "sleep": {
-    "score": 37,
-    "totalSec": 20340,
+    "score": null,
+    "totalSec": null,
     "stages": {
-      "deep": 3060,
-      "light": 16380,
-      "rem": 900,
-      "awake": 4800
+      "deep": null,
+      "light": null,
+      "rem": null,
+      "awake": null
     }
   },
   "bodyBattery": {
-    "current": 21,
-    "high": 21,
-    "low": 5
+    "current": 37,
+    "high": 56,
+    "low": 37
   },
   "hrv": {
-    "lastNightAvg": 34,
+    "lastNightAvg": null,
     "status": "UNBALANCED"
   },
   "rhr": null,
@@ -33,6 +33,6 @@
     "avg": null
   },
   "respiration": {
-    "avg": 16.0
+    "avg": 15.0
   }
 }
