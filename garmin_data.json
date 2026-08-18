@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-17T06:25:24",
+  "updated": "2026-08-18T06:19:10",
   "readiness": {
     "score": null,
     "level": null
@@ -15,13 +15,13 @@
     }
   },
   "bodyBattery": {
-    "current": null,
-    "high": null,
-    "low": null
+    "current": 100,
+    "high": 100,
+    "low": 46
   },
   "hrv": {
-    "lastNightAvg": null,
-    "status": null
+    "lastNightAvg": 90,
+    "status": "BALANCED"
   },
   "rhr": null,
   "steps": null,
@@ -30,9 +30,9 @@
   },
   "intensityMinutes": 0,
   "spo2": {
-    "avg": null
+    "avg": 96.0
   },
   "respiration": {
-    "avg": null
+    "avg": 12.0
   }
 }
