@@ -1,38 +1,38 @@
 {
-  "updated": "2026-10-13T12:59:59",
+  "updated": "2026-10-14T10:40:42",
   "readiness": {
     "score": null,
     "level": null
   },
   "sleep": {
-    "score": null,
-    "totalSec": null,
+    "score": 80,
+    "totalSec": 22320,
     "stages": {
-      "deep": null,
-      "light": null,
-      "rem": null,
-      "awake": null
+      "deep": 5220,
+      "light": 12360,
+      "rem": 4740,
+      "awake": 240
     }
   },
   "bodyBattery": {
-    "current": null,
-    "high": null,
-    "low": null
+    "current": 59,
+    "high": 97,
+    "low": 35
   },
   "hrv": {
-    "lastNightAvg": null,
-    "status": null
+    "lastNightAvg": 98,
+    "status": "BALANCED"
   },
-  "rhr": null,
-  "steps": null,
+  "rhr": 43.0,
+  "steps": 2201,
   "stress": {
-    "avg": null
+    "avg": 14
   },
-  "intensityMinutes": 0,
+  "intensityMinutes": 31,
   "spo2": {
-    "avg": null
+    "avg": 97.0
   },
   "respiration": {
-    "avg": null
+    "avg": 12.0
   }
 }
